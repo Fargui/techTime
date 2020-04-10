@@ -5,23 +5,34 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Service\EventService;
 
 class EventController extends AbstractController
 {
+
+    private $eventService;
+
+    public function __construct( EventService $eventService ){
+        $this->eventService = $eventService;
+    }
+
+
     /**
-     * @Route("/list", name="event")
+     * @Route("/list", name="list_event")
      */
-    public function list()
+    public function list(EventService $eventService)
     {
-        return new Response('Liste des events');
+        return $this->render("event/event_list.html.twig", ["events" => $eventService->getAll()]);
     }
 
     /**
      * @Route("/show/{id}", name="show_event", requirements = {"id"="\d+"})
      */
-    public function show($id)
+    public function show( $id )
     {
-        return new Response('Affichage d\'un event');
+        return $this->render( 'event/event_single.html.twig', array(
+            'event' => $this->eventService->get( $id ),
+        ));
     }
 
     /**

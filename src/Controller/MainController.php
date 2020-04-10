@@ -12,9 +12,9 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main_home")
      */
-    public function home(Request $request)
+    public function home()
     {
-        $request->request->all(); // $_GET
-        return new Response('page d\'accueil');
+        return $this->render('main/home.html.twig');
     }
 }
+

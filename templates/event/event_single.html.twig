@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section %}
+<ul>
+    <li>Place : {{events.name}}</li>
+    <li>Description : {{events.description}}</li>
+    <li>Image : {{events.picture}}</li>
+    <li>Début : {{events.startAt}}</li>
+    <li>Fin : {{events.endAt}}</li>
+    <li>Prix : {{events.price}}</li>
+    <li>Capacité : {{events.capacity}}</li>
+    
+
+   
+</ul>
+
+{% endblock %}
